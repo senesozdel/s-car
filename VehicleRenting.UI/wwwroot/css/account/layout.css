@@ -1,0 +1,54 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(90deg, rgba(13,54,86,0.4), rgba(0,0,0,0.4)), url('https://www.pixelstalk.net/wp-content/uploads/2016/06/High-Quality-Front-View-Car-Wallpaper.jpg') no-repeat center/cover;
+    background-attachment: fixed;
+    color: #f8f9fa;
+}
+
+.auth-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+
+.auth-logo {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.auth-card .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+    .auth-logo img {
+        height: 40px;
+    }
+
+.auth-card {
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+

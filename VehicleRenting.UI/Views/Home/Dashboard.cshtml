@@ -1,0 +1,151 @@
+﻿@using VehicleRenting.UI.Models.DTOs
+@model HomeDTO
+@{
+    ViewData["Title"] = "Giriş Yap";
+	Layout = ViewBag.Layout;
+}
+@{
+    ViewData["Title"] = "Araç Kiralama - Anasayfa";
+}
+<link href="~/css/site.css" rel="stylesheet" />
+
+
+<main class="container ">
+    <h3 class="mb-4 text-white">Merhaba, @ViewBag.UserName!</h3>
+    <p class="text-muted mb-4">İşte filonuzdaki araçların ve kullanıcı aktivitelerinin güncel durumu.</p>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card p-3 card-stat text-center">
+                <h6 class="text-muted mb-1">Toplam Araç</h6>
+                <h3>@ViewBag.TotalVehicles</h3>
+                <small class="text-muted">Filo</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-3 card-stat text-center">
+                <h6 class="text-muted mb-1">Kullanıma Hazır Araç Sayısı</h6>
+                <h3>@ViewBag.ActiveVehicles</h3>
+                <small class="text-muted">Tüm araçlar</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-3 card-stat text-center">
+                <h6 class="text-muted mb-1">Aktif Kullanıcı Sayısı </h6>
+                <h3>@ViewBag.DailyUsage</h3>
+                <small class="text-muted">Sistemde</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-3 card-stat text-center">
+                <h6 class="text-muted mb-1">Bekleyen Bakım</h6>
+                <h3>@ViewBag.PendingMaintenance</h3>
+                <small class="text-muted">Hızlı müdahale</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Son İşlemler Tablosu -->
+    <div class="card card-body bg-blue-transparent border-0">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="text-white">Son İşlemler</h5>
+            <form method="post" asp-controller="Home" asp-action="ExportToExcel" asp-route-type="logs">
+                <button type="submit" class="btn btn-outline-light btn-sm">Rapor Oluştur</button>
+            </form>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Kullanıcı</th>
+                        <th>Araç</th>
+                        <th>Açıklama</th>
+                        <th>Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Logs)
+                    {
+                        <tr>
+                            <td>@item.UserName</td>
+                            <td>@item.VehicleName</td>
+                            <td>@item.Description</td>
+                            <td>
+                                @item.CreatedDate.ToString("dd MMM yyyy HH:mm")
+
+                            </td>
+
+            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Kullanıcı Tablosu -->
+
+    <div class="card card-body bg-blue-transparent border-0">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="text-white">Aktifk Kullanıcılar</h5>
+            <form method="post" asp-controller="Home" asp-action="ExportToExcel" asp-route-type="users">
+                <button type="submit" class="btn btn-outline-light btn-sm">Rapor Oluştur</button>
+            </form>
+        
+        </div>
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Kullanıcı İsmi</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Users)
+                    {
+                        <tr>
+                            <td>@item.Username</td>
+                            <td>@item.Email</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Araçlar Tablosu -->
+
+    <div class="card card-body bg-blue-transparent border-0">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="text-white">Filodaki Araçlarım</h5>
+            <form method="post" asp-controller="Home" asp-action="ExportToExcel" asp-route-type="vehicles">
+                <button type="submit" class="btn btn-outline-light btn-sm">Rapor Oluştur</button>
+            </form>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Araç İsmi</th>
+                        <th>Plaka Numarası</th>
+                        <th>Son İşlem Yapan Kişi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Vehicles)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.PlateNumber</td>
+                            <td>@item.LastUpdatedUser</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+
+
+

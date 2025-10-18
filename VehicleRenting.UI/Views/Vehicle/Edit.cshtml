@@ -1,0 +1,37 @@
+﻿@model VehicleRenting.Entities.VehicleModel
+@{
+    ViewData["Title"] = "Araç Düzenle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+<link href="~/css/vehicle/create.css" rel="stylesheet" />
+<script src="~/js/vehicle/edit.js"></script>
+
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-7 col-lg-5">
+            <div class="card glass-card p-4 shadow-lg">
+                <h2 class="card-title text-center mb-4 text-gradient">Araç Düzenle</h2>
+
+                <form asp-action="Edit" method="post" id="editVehicleForm" class="exclusive-form">
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Name" id="Name" class="form-control form-control-glass" placeholder="Araç adını girin" required />
+                        <label>Araç Adı</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input asp-for="PlateNumber" id="PlateNumber" class="form-control form-control-glass" placeholder="Plaka girin" required />
+                        <label>Plaka</label>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-gradient btn-lg shadow-sm">Güncelle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿@model VehicleRenting.Entities.VehicleWorkTimeModel
+@{
+    ViewData["Title"] = "Çalışma ve Bakım Süresi Girişi";
+    Layout = ViewBag.Layout;
+}
+
+<link href="~/css/vehicle/create.css" rel="stylesheet" />
+
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-7 col-lg-5">
+            <div class="card glass-card p-4 shadow-lg">
+                <h2 class="card-title text-center mb-4 text-gradient">Günlük Çalışma Süresi Girişi</h2>
+
+                <form asp-action="Create" id="workTimeForm" class="exclusive-form" data-create-url="@Url.Action("Create", "VehicleWorkTime")">
+                    <div class="mb-3">
+                        <label>Araç</label>
+                        <select asp-for="VehicleId" class="form-select form-control-glass" required>
+                            @foreach (var v in ViewBag.Vehicles)
+                            {
+                                <option value="@v.Id">@v.Name - @v.PlateNumber</option>
+                            }
+                        </select>
+                        
+                    </div>
+                    <hr />
+                    <div class="form-floating mb-3">
+                        <input asp-for="ActiveHours" class="form-control form-control-glass" type="number" step="0.1" min="0" required placeholder="Aktif Çalışma Saati" />
+                        <label>Aktif Çalışma Saati</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="MaintenanceHours" class="form-control form-control-glass" type="number" step="0.1" min="0" required placeholder="Bakım Saati" />
+                        <label>Bakım Saati</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input asp-for="IdleHours" id="IdleHours" class="form-control form-control-glass bg-blue-transparent"   type="number" disabled readonly placeholder="Boşta Bekleme Saati" />
+                        <label>Boşta Bekleme Saati</label>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-gradient btn-lg shadow-sm">Kaydet</button>
+                    </div>
+                </form>
+
+    
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/vehicleworktime/create.js"></script>
+
+}

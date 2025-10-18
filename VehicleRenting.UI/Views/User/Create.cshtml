@@ -1,0 +1,54 @@
+﻿@using VehicleRenting.UI.Models.DTOs
+@model RegisterDTO
+@{
+    Layout = ViewBag.Layout;
+}
+<link href="~/css/user/create.css" rel="stylesheet" />
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-7 col-lg-5">
+            <div class="card glass-card p-4 shadow-lg">
+                <h2 class="card-title text-center mb-4 text-gradient">Yeni Kullanıcı Ekle</h2>
+
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "registerForm" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        <label class="form-label text-light">Kullanıcı Adı</label>
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control bg-transparent text-light border-light", placeholder = "Kullanıcı adınızı girin" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-light">E-posta</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control bg-transparent text-light border-light", type = "email", placeholder = "E-posta adresiniz" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-light">Şifre</label>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control bg-transparent text-light border-light", placeholder = "••••••••" })
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label text-light">Şifreyi Onayla</label>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control bg-transparent text-light border-light", placeholder = "••••••••" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="Role">Rol</label>
+                        <select asp-for="RoleId" class="form-select form-control-glass">
+                            <option value=1>Admin</option>
+                            <option value=2>User</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-light fw-semibold w-100 py-2">Kayıt Ol</button>
+                }
+
+                <div class="text-center mt-3">
+                    <small>Zaten hesabınız var mı? <a href="/Account/Login" class="text-info text-decoration-none">Giriş Yap</a></small>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

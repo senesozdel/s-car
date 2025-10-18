@@ -1,0 +1,38 @@
+﻿@model VehicleRenting.Entities.VehicleModel
+@{
+    ViewData["Title"] = "Yeni Araç Ekle";
+    Layout = ViewBag.Layout;
+}
+
+<link href="~/css/vehicle/create.css" rel="stylesheet" />
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-7 col-lg-5">
+            <div class="card glass-card p-4 shadow-lg">
+                <h2 class="card-title text-center mb-4 text-gradient">Yeni Araç Ekle</h2>
+
+                <form id="vehicleForm" class="exclusive-form" data-create-url="@Url.Action("Create", "Vehicle")">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Name" id="Name" class="form-control form-control-glass" placeholder="Araç adını girin" required />
+                        <label>Araç Adı</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input asp-for="PlateNumber" id="PlateNumber" class="form-control form-control-glass" placeholder="Plaka girin" required />
+                        <label>Plaka</label>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-gradient btn-lg shadow-sm">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="~/js/vehicle/create.js"></script>
+}

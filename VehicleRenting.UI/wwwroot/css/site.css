@@ -1,0 +1,83 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background: linear-gradient(180deg,#0b1220 0%, #071028 100%);
+    color: white
+}
+
+.bg-body {
+    background: linear-gradient(180deg,#0b1220 0%, #071028 100%);
+}
+
+
+
+/* Dark-theme enhancements */
+:root {
+    --primary: #0d6efd;
+    --muted: #b5bcc6;
+}
+
+
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.6px;
+}
+
+.hero {
+    background: linear-gradient(90deg, rgba(13,54,86,0.35), rgba(0,0,0,0.25)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=') no-repeat center/cover;
+    border-radius: 12px;
+    padding: 4rem 2rem;
+    box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+}
+.bg-blue-transparent {
+    background-color: #0a1222c2 !important
+}
+
+.card-stat {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.card-feature {
+    border: 1px solid rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.03);
+}
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.03);
+}
+
+footer {
+    opacity: 0.9;
+    color: var(--muted);
+}
+
+.theme-toggle {
+    cursor: pointer;
+}
+

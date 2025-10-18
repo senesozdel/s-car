@@ -1,0 +1,27 @@
+﻿<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent px-3">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link " aria-current="page" asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Vehicle" asp-action="List">Araçlar</a>
+                    </li>
+                    @if ((string)Model == "Admin")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="User" asp-action="List">Kullanıcılar</a>
+                        </li>
+                    }
+                    <li class="nav-item"><a class="nav-link" asp-controller="VehicleWorkTime" asp-action="List">Araç Çalışma Süreleri</a></li>
+                    <li class="nav-item ms-2">
+                        <button class="btn btn-outline-light btn-sm" onclick="location.href='@Url.Action("Logout","Account")'">Çıkış Yap</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

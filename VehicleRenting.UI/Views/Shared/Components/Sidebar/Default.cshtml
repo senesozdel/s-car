@@ -1,0 +1,16 @@
+﻿<div class="">
+    <button class="sidebar-toggle"><i class="bi bi-arrow-left"></i> </button>
+
+    <div class="sidebar" id="sidebar">
+        <a asp-controller="Home" asp-action="Index">Dashboard</a>
+        <a asp-controller="VehicleWorkTime" asp-action="List">Raporlar</a>
+        <a asp-controller="Vehicle" asp-action="List">Araçlar</a>
+
+        @if ((string)Model == "Admin")
+        {
+            <a asp-controller="User" asp-action="List">Kullanıcılar</a>
+        }
+        <a asp-controller="Account" asp-action="Logout">Logout</a>
+
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@using VehicleRenting.UI.Models.DTOs
+@model RegisterDTO
+@{
+    ViewData["Title"] = "Kayıt Ol";
+    Layout = "~/Views/Account/_AuthLayout.cshtml";
+}
+
+<script src="~/js/account/register.js"></script>
+
+<div class="auth-container">
+
+    <div class="auth-card p-4 shadow-lg text-white" style="width: 480px;">
+        <h3 class="text-center mb-4 fw-semibold">Yeni Hesap Oluştur</h3>
+
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "registerForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="mb-3">
+                <label class="form-label text-light">Kullanıcı Adı</label>
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control bg-transparent text-light border-light", placeholder = "Kullanıcı adınızı girin" })
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label text-light">E-posta</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control bg-transparent text-light border-light", type = "email", placeholder = "E-posta adresiniz" })
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label text-light">Şifre</label>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control bg-transparent text-light border-light", placeholder = "••••••••" })
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label text-light">Şifreyi Onayla</label>
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control bg-transparent text-light border-light", placeholder = "••••••••" })
+            </div>
+
+            <button type="submit" class="btn btn-light fw-semibold w-100 py-2">Kayıt Ol</button>
+        }
+
+        <div class="text-center mt-3">
+            <small>Zaten hesabınız var mı? <a href="/Account/Login" class="text-info text-decoration-none">Giriş Yap</a></small>
+        </div>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success mt-3 text-center rounded-pill">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+    </div>
+</div>
+

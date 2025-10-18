@@ -1,0 +1,77 @@
+:root {
+    --primary: #0d6efd;
+    --gradient: linear-gradient(135deg, #0d6efd, #6610f2);
+    --glass-bg: rgba(10,18,34,0.65);
+    --glass-border: rgba(255,255,255,0.1);
+    --muted: #b5bcc6;
+}
+
+body {
+    background: linear-gradient(180deg, #0b1220 0%, #071028 100%);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Glass effect table container */
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .glass-card:hover {
+        box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+    }
+
+/* Table Header */
+.table thead.bg-gradient {
+    background: var(--gradient);
+}
+
+/* Hover effect for rows */
+.hover-row:hover {
+    background: rgba(255,255,255,0.05);
+    transform: translateX(2px);
+    transition: all 0.2s ease;
+}
+
+/* Buttons */
+.btn-warning {
+    background: #ffc107;
+    border: none;
+    color: #1a1a1a;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+    .btn-warning:hover {
+        filter: brightness(1.1);
+        transform: translateY(-2px);
+    }
+
+.btn-danger {
+    background: #dc3545;
+    border: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+    .btn-danger:hover {
+        filter: brightness(1.1);
+        transform: translateY(-2px);
+    }
+
+/* Responsive */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn-sm {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+    }
+}

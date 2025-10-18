@@ -1,9 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VehicleRenting.DAL
 {
@@ -13,7 +9,13 @@ namespace VehicleRenting.DAL
 
         protected BaseRepository(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            // 1️⃣ Önce environment variable'dan oku (Render gibi ortamlarda)
+            var envConnection = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
+
+            // 2️⃣ Eğer env yoksa (örneğin localde) appsettings.json'dan al
+            _connectionString = !string.IsNullOrEmpty(envConnection)
+                ? envConnection
+                : configuration.GetConnectionString("DefaultConnection");
         }
     }
 }

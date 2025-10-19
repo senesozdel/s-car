@@ -1,10 +1,11 @@
 ﻿$(document).ready(function () {
 
-    $("#vehicleDeleteForm").on("submit", function (e) {
+    $(".vehicleDeleteForm").on("submit", function (e) {
         e.preventDefault();
 
-        var vehicleId = $(this).find("input[name='id']").val(); // data yerine formdan al
-        const deleteUrl = $(this).data("delete-url"); // her form kendi url'ini taşır
+        const form = $(this);
+        const vehicleId = form.data("id");
+        const deleteUrl = form.data("delete-url");
 
         Swal.fire({
             title: 'Emin misiniz?',
@@ -22,7 +23,9 @@
                     type: 'POST',
                     data: { id: vehicleId },
                     success: function () {
-                        $("#row-" + vehicleId).fadeOut();
+                        $("#row-" + vehicleId).fadeOut(300, function () {
+                            $(this).remove();
+                        });
                         Swal.fire({
                             icon: 'success',
                             title: 'Silindi!',
@@ -44,4 +47,20 @@
         });
     });
 
+
+    $("#editVehicleForm").on("submit", function (e) {
+        const name = $("#Name").val().trim();
+        const plate = $("#PlateNumber").val().trim();
+
+        if (name === "" || plate === "") {
+            e.preventDefault();
+            Swal.fire({
+                icon: 'warning',
+                title: 'Eksik Bilgi!',
+                text: 'Lütfen tüm alanları doldurun.',
+                confirmButtonColor: '#3085d6'
+            });
+            return false;
+        }
+    });
 });

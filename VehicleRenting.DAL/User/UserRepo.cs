@@ -18,7 +18,7 @@ namespace VehicleRenting.DAL.User
 
         public bool AddUser(UserModel user)
         {
-            string query = "INSERT INTO [User] (Username, PasswordHash, Email, RoleId) VALUES (@Username, @PasswordHash, @Email, @RoleId)";
+            string query = "INSERT INTO [User] (Username, PasswordHash, Email, RoleId) VALUES (@Username, @PasswordHash, @Email, @RoleId,@CreatedDate,@IsDeleted)";
             using (SqlConnection conn = new SqlConnection(_connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -26,6 +26,8 @@ namespace VehicleRenting.DAL.User
                 cmd.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
                 cmd.Parameters.AddWithValue("@Email", user.Email);
                 cmd.Parameters.AddWithValue("@RoleId", user.RoleId);
+                cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@IsDeleted", false);
 
                 conn.Open();
                 return cmd.ExecuteNonQuery() > 0;

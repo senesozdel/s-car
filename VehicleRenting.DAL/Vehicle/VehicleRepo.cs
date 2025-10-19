@@ -12,13 +12,16 @@ namespace VehicleRenting.DAL.Vehicle
 
         public bool Create(VehicleModel vehicle)
         {
-            string query = "INSERT INTO Vehicle (Name, PlateNumber, CreatedBy) VALUES (@Name, @PlateNumber, @CreatedBy)";
+            string query = "INSERT INTO Vehicle (Name, PlateNumber, CreatedBy) VALUES (@Name, @PlateNumber, @CreatedBy,@CreatedDate,@IsDeleted)";
             using (SqlConnection conn = new SqlConnection(_connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 cmd.Parameters.AddWithValue("@Name", vehicle.Name);
                 cmd.Parameters.AddWithValue("@PlateNumber", vehicle.PlateNumber);
                 cmd.Parameters.AddWithValue("@CreatedBy", vehicle.CreatedBy ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@IsDeleted", false);
+
 
                 conn.Open();
                 int result = cmd.ExecuteNonQuery();

@@ -18,8 +18,8 @@ namespace VehicleRenting.DAL.VehicleWorkTime
         public bool Create(VehicleWorkTimeModel workTime)
         {
             string query = @"INSERT INTO VehicleWorkTime 
-                             (VehicleId, UserId,  ActiveHours, MaintenanceHours) 
-                             VALUES (@VehicleId, @UserId, @ActiveHours, @MaintenanceHours,@CreatedDate,@IsDeleted)";
+                             (VehicleId, UserId,  ActiveHours, MaintenanceHours,CreatedDate,IsDeleted) 
+                             VALUES (@VehicleId, @UserId, @ActiveHours, @MaintenanceHours,GETDATE(), 0)";
 
             using var conn = new SqlConnection(_connectionString);
             using var cmd = new SqlCommand(query, conn);
@@ -27,8 +27,7 @@ namespace VehicleRenting.DAL.VehicleWorkTime
             cmd.Parameters.AddWithValue("@UserId", workTime.UserId);
             cmd.Parameters.AddWithValue("@ActiveHours", workTime.ActiveHours);
             cmd.Parameters.AddWithValue("@MaintenanceHours", workTime.MaintenanceHours);
-            cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
-            cmd.Parameters.AddWithValue("@IsDeleted", false);
+
 
 
             conn.Open();
